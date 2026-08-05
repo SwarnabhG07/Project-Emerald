@@ -4,6 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, CalendarDays, IndianRupee } from "lucide-react";
 
+const formatDate = (dateString: string) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}/${month}/${year}`;
+};
+
 export function EligibleSchemesList() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -27,7 +32,7 @@ export function EligibleSchemesList() {
               </div>
               <div className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-red-400" />
-                <span className="font-medium">Deadline:</span> {new Date(scheme.deadline).toLocaleDateString()}
+                <span className="font-medium">Deadline:</span> {formatDate(scheme.deadline)}
               </div>
             </div>
           </CardContent>
