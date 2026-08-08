@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EligibleSchemesList } from "@/components/dashboard/EligibleSchemesList";
 import { ExplainabilityGraph } from "@/components/dashboard/ExplainabilityGraph";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import Link from "next/link";
 import { LogOut, User, MapPin, IndianRupee, Map, FileText, Home, Sprout } from "lucide-react";
 
@@ -86,6 +87,7 @@ export default function DashboardPage() {
             </nav>
           </div>
           <div className="flex items-center gap-2">
+            <LanguageSelector />
             <ThemeToggle />
             <Button variant="ghost" className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/30 font-medium transition-colors" onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />

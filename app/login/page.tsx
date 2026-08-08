@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Leaf, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -49,7 +50,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] flex items-center justify-center p-4 relative font-sans transition-colors duration-300">
-      <div className="fixed top-6 right-6 z-[100]">
+      <div className="fixed top-6 right-6 z-[100] flex items-center gap-2">
+        <LanguageSelector />
         <ThemeToggle />
       </div>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">

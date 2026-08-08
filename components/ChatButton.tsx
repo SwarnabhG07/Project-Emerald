@@ -2,8 +2,15 @@
 
 import { MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
 export function ChatButton() {
+  const pathname = usePathname();
+
+  if (pathname === "/login" || pathname === "/onboarding") {
+    return null;
+  }
+
   return (
     <Button 
       className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-2xl bg-green-600 hover:bg-green-700 dark:bg-[#d4f826] dark:hover:bg-[#bce015] text-white dark:text-black z-[100] flex items-center justify-center transition-transform hover:scale-110"
