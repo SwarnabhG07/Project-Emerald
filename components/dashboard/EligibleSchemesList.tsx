@@ -36,7 +36,7 @@ export function EligibleSchemesList() {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="pt-2 pb-5">
+          <CardFooter className="pt-4 pb-5 border-t border-slate-100 dark:border-white/5 bg-transparent">
             <Button className="w-full bg-green-600 dark:bg-[#d4f826] text-white dark:text-black hover:bg-green-700 dark:hover:bg-[#bce015] font-semibold tracking-wide rounded-xl shadow-md dark:shadow-none transition-all">Apply Now</Button>
           </CardFooter>
         </Card>

@@ -188,7 +188,7 @@ export default function OnboardingPage() {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="pt-8 pb-10 px-8 md:px-10 border-t border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.01]">
+          <CardFooter className="pt-8 pb-10 px-8 md:px-10 border-t-0 bg-transparent">
             <Button 
               type="submit" 
               className="w-full bg-orange-600 dark:bg-[#d4f826] hover:bg-orange-700 dark:hover:bg-[#bce015] text-white dark:text-black transition-all shadow-md dark:shadow-none hover:-translate-y-0.5 text-lg py-7 rounded-2xl font-semibold tracking-wide"

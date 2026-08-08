@@ -97,7 +97,7 @@ export default function LoginPage() {
               />
             </div>
           </CardContent>
-          <CardFooter className="px-8 pb-10 pt-4">
+          <CardFooter className="px-8 pb-10 pt-4 border-t-0 bg-transparent">
             <Button 
               type="submit" 
               className="w-full bg-green-600 dark:bg-[#d4f826] text-white dark:text-black hover:bg-green-700 dark:hover:bg-[#bce015] font-semibold tracking-wide h-12 rounded-xl transition-all shadow-md dark:shadow-none"

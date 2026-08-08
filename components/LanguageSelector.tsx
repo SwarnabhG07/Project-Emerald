@@ -31,11 +31,33 @@ export function LanguageSelector() {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
+    
+    // Check initial language from cookie if available
+    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/);
+    if (match && match[1]) {
+      setSelected(match[1]);
+    }
+    
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const changeLanguage = (langCode: string) => {
+    setSelected(langCode);
+    setIsOpen(false);
+
+    const select = document.querySelector(".goog-te-combo") as HTMLSelectElement;
+    if (select) {
+      select.value = langCode;
+      select.dispatchEvent(new Event("change"));
+    } else {
+      // Fallback if script hasn't loaded fully or DOM changed
+      document.cookie = `googtrans=/en/${langCode}; path=/`;
+      window.location.reload();
+    }
+  };
+
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative notranslate" ref={dropdownRef}>
       <Button 
         variant="ghost" 
         className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5 transition-colors rounded-xl font-medium"
@@ -56,10 +78,7 @@ export function LanguageSelector() {
                   ? "bg-green-50 dark:bg-[#d4f826]/10 text-green-700 dark:text-[#d4f826] font-medium" 
                   : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5"
               }`}
-              onClick={() => {
-                setSelected(lang.code);
-                setIsOpen(false);
-              }}
+              onClick={() => changeLanguage(lang.code)}
             >
               {lang.name}
               {selected === lang.code && <Check className="h-4 w-4" />}
