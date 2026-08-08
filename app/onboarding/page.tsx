@@ -56,31 +56,31 @@ export default function OnboardingPage() {
   if (!isMounted || !name) return null;
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-amber-50 to-orange-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-40">
-        <div className="absolute top-[-10%] left-[20%] w-96 h-96 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob"></div>
-        <div className="absolute bottom-[-10%] right-[10%] w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob animation-delay-2000"></div>
+    <div className="min-h-screen bg-[#0a0a0a] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative font-sans">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-[#d4f826] rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob"></div>
+        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-emerald-500 rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob animation-delay-2000"></div>
       </div>
       
-      <Card className="w-full max-w-2xl z-10 shadow-xl border-orange-100/50 bg-white/90 backdrop-blur-xl">
-        <CardHeader className="space-y-1 text-center border-b border-orange-100 pb-6 mb-6">
-          <div className="flex justify-center mb-4">
-            <div className="h-16 w-16 bg-orange-100 rounded-full flex items-center justify-center shadow-inner">
-              <Tractor className="h-8 w-8 text-orange-600" />
+      <Card className="w-full max-w-2xl z-10 shadow-2xl border-white/5 bg-black/40 backdrop-blur-2xl rounded-3xl overflow-hidden">
+        <CardHeader className="space-y-2 text-center border-b border-white/5 pb-8 pt-10 mb-6 bg-white/[0.02]">
+          <div className="flex justify-center mb-6">
+            <div className="h-16 w-16 bg-[#d4f826]/10 rounded-2xl flex items-center justify-center border border-[#d4f826]/20">
+              <Tractor className="h-8 w-8 text-[#d4f826]" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-orange-950">Farmer Profile Setup</CardTitle>
-          <CardDescription className="text-orange-700/80 text-base">
-            Welcome, {name}! Please provide a few more details to complete your profile.
+          <CardTitle className="text-3xl font-bold tracking-tight text-white">Farmer Profile Setup</CardTitle>
+          <CardDescription className="text-slate-400 font-light text-base">
+            Welcome, <span className="text-[#d4f826] font-medium">{name}</span>! Please provide a few more details to complete your profile.
           </CardDescription>
         </CardHeader>
         
         <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardContent className="space-y-6 px-8 md:px-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
               
-              <div className="space-y-2">
-                <Label htmlFor="areaOfLand" className="text-orange-900">Area of Land (in Acres)</Label>
+              <div className="space-y-3">
+                <Label htmlFor="areaOfLand" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Area of Land (in Acres)</Label>
                 <Input
                   id="areaOfLand"
                   name="areaOfLand"
@@ -90,12 +90,12 @@ export default function OnboardingPage() {
                   value={formData.areaOfLand}
                   onChange={handleChange}
                   required
-                  className="border-orange-200 focus-visible:ring-orange-500 bg-white"
+                  className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="income" className="text-orange-900">Annual Income (₹)</Label>
+              <div className="space-y-3">
+                <Label htmlFor="income" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Annual Income (₹)</Label>
                 <Input
                   id="income"
                   name="income"
@@ -104,12 +104,12 @@ export default function OnboardingPage() {
                   value={formData.income}
                   onChange={handleChange}
                   required
-                  className="border-orange-200 focus-visible:ring-orange-500 bg-white"
+                  className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
                 />
               </div>
 
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="address" className="text-orange-900">Address / Village</Label>
+              <div className="space-y-3 md:col-span-2">
+                <Label htmlFor="address" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Address / Village</Label>
                 <Input
                   id="address"
                   name="address"
@@ -117,19 +117,19 @@ export default function OnboardingPage() {
                   value={formData.address}
                   onChange={handleChange}
                   required
-                  className="border-orange-200 focus-visible:ring-orange-500 bg-white"
+                  className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="state" className="text-orange-900">State</Label>
+              <div className="space-y-3">
+                <Label htmlFor="state" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">State</Label>
                 <select
                   id="state"
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-orange-200 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-12 w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4f826] focus:border-[#d4f826] [&>option]:bg-[#1a1a1a] [&>option]:text-white"
                 >
                   <option value="" disabled>Select State</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -146,15 +146,15 @@ export default function OnboardingPage() {
                 </select>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="caste" className="text-orange-900">Category / Caste</Label>
+              <div className="space-y-3">
+                <Label htmlFor="caste" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Category / Caste</Label>
                 <select
                   id="caste"
                   name="caste"
                   value={formData.caste}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-orange-200 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-12 w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4f826] focus:border-[#d4f826] [&>option]:bg-[#1a1a1a] [&>option]:text-white"
                 >
                   <option value="" disabled>Select Category</option>
                   <option value="General">General</option>
@@ -165,15 +165,15 @@ export default function OnboardingPage() {
                 </select>
               </div>
 
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="landOwnership" className="text-orange-900">Land Ownership Type</Label>
+              <div className="space-y-3 md:col-span-2">
+                <Label htmlFor="landOwnership" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Land Ownership Type</Label>
                 <select
                   id="landOwnership"
                   name="landOwnership"
                   value={formData.landOwnership}
                   onChange={handleChange}
                   required
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-orange-200 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-12 w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4f826] focus:border-[#d4f826] [&>option]:bg-[#1a1a1a] [&>option]:text-white"
                 >
                   <option value="" disabled>Select Ownership Type</option>
                   <option value="Owner">Owner (Self-owned)</option>
@@ -184,12 +184,12 @@ export default function OnboardingPage() {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="pt-4 border-t border-orange-100">
+          <CardFooter className="pt-8 pb-10 px-8 md:px-10 border-t border-white/5 bg-white/[0.01]">
             <Button 
               type="submit" 
-              className="w-full bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-200 transition-all hover:shadow-xl hover:-translate-y-0.5 text-lg py-6"
+              className="w-full bg-[#d4f826] hover:bg-[#bce015] text-black transition-all hover:shadow-xl hover:shadow-[#d4f826]/20 text-lg py-7 rounded-2xl font-semibold tracking-wide"
             >
-              <CheckCircle2 className="mr-2 h-5 w-5" />
+              <CheckCircle2 className="mr-2 h-6 w-6" />
               Complete Profile
             </Button>
           </CardFooter>

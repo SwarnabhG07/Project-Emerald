@@ -47,40 +47,39 @@ export default function LoginPage() {
   if (!isMounted) return null;
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-40">
-        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-        <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-lime-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-4 relative font-sans">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#d4f826] rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-emerald-500 rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob animation-delay-4000"></div>
       </div>
       
-      <Card className="w-full max-w-md z-10 shadow-xl border-green-100/50 bg-white/80 backdrop-blur-xl">
-        <CardHeader className="space-y-1 text-center">
-          <div className="flex justify-center mb-4">
-            <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center shadow-inner">
-              <Leaf className="h-8 w-8 text-green-600" />
+      <Card className="w-full max-w-md z-10 shadow-2xl border-white/5 bg-black/40 backdrop-blur-2xl rounded-3xl overflow-hidden">
+        <CardHeader className="space-y-2 text-center pb-8 pt-10">
+          <div className="flex justify-center mb-6">
+            <div className="h-16 w-16 bg-[#d4f826]/10 rounded-2xl flex items-center justify-center border border-[#d4f826]/20">
+              <Leaf className="h-8 w-8 text-[#d4f826]" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-green-900">Welcome to Agri</CardTitle>
-          <CardDescription className="text-green-700/70">
+          <CardTitle className="text-3xl font-bold tracking-tight text-white">Welcome to Agri</CardTitle>
+          <CardDescription className="text-slate-400 font-light">
             Enter your details to sign in or create an account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleLogin}>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-green-900">Full Name</Label>
+          <CardContent className="space-y-5 px-8">
+            <div className="space-y-3">
+              <Label htmlFor="name" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Full Name</Label>
               <Input
                 id="name"
                 placeholder="E.g. Ramesh Kumar"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="border-green-200 focus-visible:ring-green-500 bg-white/50"
+                className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="mobile" className="text-green-900">Mobile Number</Label>
+            <div className="space-y-3">
+              <Label htmlFor="mobile" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Mobile Number</Label>
               <Input
                 id="mobile"
                 type="tel"
@@ -88,17 +87,17 @@ export default function LoginPage() {
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
                 required
-                className="border-green-200 focus-visible:ring-green-500 bg-white/50"
+                className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
               />
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="px-8 pb-10 pt-4">
             <Button 
               type="submit" 
-              className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-200 transition-all hover:shadow-xl hover:-translate-y-0.5"
+              className="w-full bg-[#d4f826] hover:bg-[#bce015] text-black font-semibold tracking-wide h-12 rounded-xl transition-all"
             >
               Continue
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </CardFooter>
         </form>
