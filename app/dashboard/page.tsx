@@ -80,16 +80,16 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent className="pt-6 space-y-6">
               <div>
-                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Full Name</p>
-                <p className="text-lg font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.name}</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Full Name</p>
+                <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.name}</p>
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Mobile Number</p>
-                <p className="text-lg font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.mobile}</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Mobile Number</p>
+                <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.mobile}</p>
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Category / Caste</p>
-                <p className="text-lg font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.caste || "Not provided"}</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Category / Caste</p>
+                <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.caste || "Not provided"}</p>
               </div>
             </CardContent>
           </Card>
@@ -109,8 +109,8 @@ export default function DashboardPage() {
                     <Map className="h-5 w-5 text-green-700 dark:text-[#d4f826]" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Total Land Area</p>
-                    <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.areaOfLand ? `${userData.areaOfLand} Acres` : "Not provided"}</p>
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Total Land Area</p>
+                    <p className="text-2xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.areaOfLand ? `${userData.areaOfLand} Acres` : "Not provided"}</p>
                   </div>
                 </div>
 
@@ -119,8 +119,8 @@ export default function DashboardPage() {
                     <IndianRupee className="h-5 w-5 text-amber-700 dark:text-[#d4f826]" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Annual Income</p>
-                    <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.income ? `₹ ${parseInt(userData.income).toLocaleString('en-IN')}` : "Not provided"}</p>
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Annual Income</p>
+                    <p className="text-2xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.income ? `₹ ${parseInt(userData.income).toLocaleString('en-IN')}` : "Not provided"}</p>
                   </div>
                 </div>
 
@@ -129,8 +129,8 @@ export default function DashboardPage() {
                     <FileText className="h-5 w-5 text-purple-700 dark:text-[#d4f826]" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Land Ownership</p>
-                    <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.landOwnership || "Not provided"}</p>
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Land Ownership</p>
+                    <p className="text-2xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.landOwnership || "Not provided"}</p>
                   </div>
                 </div>
 
@@ -139,9 +139,9 @@ export default function DashboardPage() {
                     <MapPin className="h-5 w-5 text-blue-700 dark:text-[#d4f826]" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Location</p>
-                    <p className="text-lg font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.address || "Not provided"}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors">{userData.state}</p>
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Location</p>
+                    <p className="text-xl font-medium text-slate-900 dark:text-slate-100 transition-colors">{userData.address || "Not provided"}</p>
+                    <p className="text-base text-slate-500 dark:text-slate-400 transition-colors">{userData.state}</p>
                   </div>
                 </div>
               </div>
