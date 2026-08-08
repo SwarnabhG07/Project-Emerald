@@ -44,9 +44,11 @@ export function Navbar() {
                 Misinfo Checker
               </Button>
             </Link>
-            <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
-              Chat with us
-            </Button>
+            <Link href="/chat">
+              <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
+                Chat with us
+              </Button>
+            </Link>
             <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
               About us
             </Button>
