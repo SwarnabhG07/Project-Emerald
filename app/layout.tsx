@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -12,13 +14,21 @@ export const metadata: Metadata = {
   description: "Modern farm management platform",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${outfit.variable} h-full antialiased dark`}
+      className={`${outfit.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <div className="fixed bottom-6 right-6 z-[100]">
+            <ThemeToggle />
+          </div>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

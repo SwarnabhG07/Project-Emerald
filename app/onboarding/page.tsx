@@ -56,22 +56,22 @@ export default function OnboardingPage() {
   if (!isMounted || !name) return null;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative font-sans transition-colors duration-300">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-[#d4f826] rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob"></div>
-        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-emerald-500 rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-orange-300 dark:bg-[#d4f826] rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] opacity-40 dark:opacity-10 animate-blob transition-all duration-500"></div>
+        <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-amber-300 dark:bg-emerald-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] opacity-40 dark:opacity-10 animate-blob animation-delay-2000 transition-all duration-500"></div>
       </div>
       
-      <Card className="w-full max-w-2xl z-10 shadow-2xl border-white/5 bg-black/40 backdrop-blur-2xl rounded-3xl overflow-hidden">
-        <CardHeader className="space-y-2 text-center border-b border-white/5 pb-8 pt-10 mb-6 bg-white/[0.02]">
+      <Card className="w-full max-w-2xl z-10 shadow-2xl border-slate-200 dark:border-white/5 bg-white/80 dark:bg-black/40 backdrop-blur-2xl rounded-3xl overflow-hidden transition-all duration-300">
+        <CardHeader className="space-y-2 text-center border-b border-slate-200 dark:border-white/5 pb-8 pt-10 mb-6 bg-slate-50/50 dark:bg-white/[0.02]">
           <div className="flex justify-center mb-6">
-            <div className="h-16 w-16 bg-[#d4f826]/10 rounded-2xl flex items-center justify-center border border-[#d4f826]/20">
-              <Tractor className="h-8 w-8 text-[#d4f826]" />
+            <div className="h-16 w-16 bg-orange-100 dark:bg-[#d4f826]/10 rounded-2xl flex items-center justify-center border border-orange-200 dark:border-[#d4f826]/20 transition-colors">
+              <Tractor className="h-8 w-8 text-orange-600 dark:text-[#d4f826]" />
             </div>
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight text-white">Farmer Profile Setup</CardTitle>
-          <CardDescription className="text-slate-400 font-light text-base">
-            Welcome, <span className="text-[#d4f826] font-medium">{name}</span>! Please provide a few more details to complete your profile.
+          <CardTitle className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors">Farmer Profile Setup</CardTitle>
+          <CardDescription className="text-slate-500 dark:text-slate-400 font-light text-base transition-colors">
+            Welcome, <span className="text-orange-600 dark:text-[#d4f826] font-medium">{name}</span>! Please provide a few more details to complete your profile.
           </CardDescription>
         </CardHeader>
         
@@ -80,7 +80,7 @@ export default function OnboardingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
               
               <div className="space-y-3">
-                <Label htmlFor="areaOfLand" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Area of Land (in Acres)</Label>
+                <Label htmlFor="areaOfLand" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Area of Land (in Acres)</Label>
                 <Input
                   id="areaOfLand"
                   name="areaOfLand"
@@ -90,12 +90,12 @@ export default function OnboardingPage() {
                   value={formData.areaOfLand}
                   onChange={handleChange}
                   required
-                  className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
+                  className="border-slate-200 dark:border-white/10 focus-visible:ring-orange-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-orange-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
                 />
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="income" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Annual Income (₹)</Label>
+                <Label htmlFor="income" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Annual Income (₹)</Label>
                 <Input
                   id="income"
                   name="income"
@@ -104,12 +104,12 @@ export default function OnboardingPage() {
                   value={formData.income}
                   onChange={handleChange}
                   required
-                  className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
+                  className="border-slate-200 dark:border-white/10 focus-visible:ring-orange-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-orange-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
                 />
               </div>
 
               <div className="space-y-3 md:col-span-2">
-                <Label htmlFor="address" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Address / Village</Label>
+                <Label htmlFor="address" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Address / Village</Label>
                 <Input
                   id="address"
                   name="address"
@@ -117,19 +117,19 @@ export default function OnboardingPage() {
                   value={formData.address}
                   onChange={handleChange}
                   required
-                  className="border-white/10 focus-visible:ring-[#d4f826] focus-visible:border-[#d4f826] bg-white/5 text-white placeholder:text-slate-600 h-12 rounded-xl"
+                  className="border-slate-200 dark:border-white/10 focus-visible:ring-orange-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-orange-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
                 />
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="state" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">State</Label>
+                <Label htmlFor="state" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">State</Label>
                 <select
                   id="state"
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
                   required
-                  className="flex h-12 w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4f826] focus:border-[#d4f826] [&>option]:bg-[#1a1a1a] [&>option]:text-white"
+                  className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-[#d4f826] focus:border-orange-500 dark:focus:border-[#d4f826] dark:[&>option]:bg-[#1a1a1a] dark:[&>option]:text-white transition-colors"
                 >
                   <option value="" disabled>Select State</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -147,14 +147,14 @@ export default function OnboardingPage() {
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="caste" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Category / Caste</Label>
+                <Label htmlFor="caste" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Category / Caste</Label>
                 <select
                   id="caste"
                   name="caste"
                   value={formData.caste}
                   onChange={handleChange}
                   required
-                  className="flex h-12 w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4f826] focus:border-[#d4f826] [&>option]:bg-[#1a1a1a] [&>option]:text-white"
+                  className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-[#d4f826] focus:border-orange-500 dark:focus:border-[#d4f826] dark:[&>option]:bg-[#1a1a1a] dark:[&>option]:text-white transition-colors"
                 >
                   <option value="" disabled>Select Category</option>
                   <option value="General">General</option>
@@ -166,14 +166,14 @@ export default function OnboardingPage() {
               </div>
 
               <div className="space-y-3 md:col-span-2">
-                <Label htmlFor="landOwnership" className="text-slate-300 text-xs uppercase tracking-widest font-semibold">Land Ownership Type</Label>
+                <Label htmlFor="landOwnership" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Land Ownership Type</Label>
                 <select
                   id="landOwnership"
                   name="landOwnership"
                   value={formData.landOwnership}
                   onChange={handleChange}
                   required
-                  className="flex h-12 w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4f826] focus:border-[#d4f826] [&>option]:bg-[#1a1a1a] [&>option]:text-white"
+                  className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-[#d4f826] focus:border-orange-500 dark:focus:border-[#d4f826] dark:[&>option]:bg-[#1a1a1a] dark:[&>option]:text-white transition-colors"
                 >
                   <option value="" disabled>Select Ownership Type</option>
                   <option value="Owner">Owner (Self-owned)</option>
@@ -184,10 +184,10 @@ export default function OnboardingPage() {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="pt-8 pb-10 px-8 md:px-10 border-t border-white/5 bg-white/[0.01]">
+          <CardFooter className="pt-8 pb-10 px-8 md:px-10 border-t border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.01]">
             <Button 
               type="submit" 
-              className="w-full bg-[#d4f826] hover:bg-[#bce015] text-black transition-all hover:shadow-xl hover:shadow-[#d4f826]/20 text-lg py-7 rounded-2xl font-semibold tracking-wide"
+              className="w-full bg-orange-600 dark:bg-[#d4f826] hover:bg-orange-700 dark:hover:bg-[#bce015] text-white dark:text-black transition-all shadow-md dark:shadow-none hover:-translate-y-0.5 text-lg py-7 rounded-2xl font-semibold tracking-wide"
             >
               <CheckCircle2 className="mr-2 h-6 w-6" />
               Complete Profile
