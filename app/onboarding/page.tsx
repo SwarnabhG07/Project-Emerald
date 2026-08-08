@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tractor, CheckCircle2 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -57,6 +58,9 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative font-sans transition-colors duration-300">
+      <div className="fixed top-6 right-6 z-[100]">
+        <ThemeToggle />
+      </div>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-orange-300 dark:bg-[#d4f826] rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] opacity-40 dark:opacity-10 animate-blob transition-all duration-500"></div>
         <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-amber-300 dark:bg-emerald-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] opacity-40 dark:opacity-10 animate-blob animation-delay-2000 transition-all duration-500"></div>

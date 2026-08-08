@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ChatButton } from "@/components/ChatButton";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -23,10 +23,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <div className="fixed bottom-6 right-6 z-[100]">
-            <ThemeToggle />
-          </div>
           {children}
+          <ChatButton />
         </ThemeProvider>
       </body>
     </html>

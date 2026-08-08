@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EligibleSchemesList } from "@/components/dashboard/EligibleSchemesList";
 import { ExplainabilityGraph } from "@/components/dashboard/ExplainabilityGraph";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import Link from "next/link";
 import { LogOut, User, MapPin, IndianRupee, Map, FileText, Home, Sprout } from "lucide-react";
 
 export default function DashboardPage() {
@@ -67,9 +69,11 @@ export default function DashboardPage() {
             
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
-                Home
-              </Button>
+              <Link href="/dashboard">
+                <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
+                  Home
+                </Button>
+              </Link>
               <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
                 Misinfo Checker
               </Button>
@@ -81,10 +85,13 @@ export default function DashboardPage() {
               </Button>
             </nav>
           </div>
-          <Button variant="ghost" className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/30 font-medium transition-colors" onClick={handleLogout}>
-            <LogOut className="h-4 w-4 mr-2" />
-            Logout
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="ghost" className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/30 font-medium transition-colors" onClick={handleLogout}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </Button>
+          </div>
         </div>
       </header>
 
