@@ -9,8 +9,9 @@ import { EligibleSchemesList } from "@/components/dashboard/EligibleSchemesList"
 import { ExplainabilityGraph } from "@/components/dashboard/ExplainabilityGraph";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
-import { LogOut, User, MapPin, IndianRupee, Map, FileText, Home, Sprout } from "lucide-react";
+import { User, MapPin, IndianRupee, Map, FileText, Sprout } from "lucide-react";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -57,45 +58,7 @@ export default function DashboardPage() {
     <div className="min-h-screen flex flex-col bg-cover bg-center bg-fixed transition-colors duration-300" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop')" }}>
       <div className="fixed inset-0 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-xl z-0 pointer-events-none transition-colors duration-500"></div>
       <div className="relative z-10 flex flex-col min-h-screen font-sans">
-      {/* Navbar */}
-      <header className="bg-white/60 dark:bg-black/20 backdrop-blur-2xl sticky top-0 z-20 border-b border-slate-200 dark:border-white/5 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-3">
-              <div className="bg-green-100 dark:bg-[#d4f826]/10 p-2 rounded-xl border border-green-200 dark:border-[#d4f826]/20 transition-colors">
-                <Sprout className="h-5 w-5 text-green-600 dark:text-[#d4f826]" />
-              </div>
-              <h1 className="text-xl font-semibold text-slate-800 dark:text-white tracking-wide transition-colors">AgriPortal</h1>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-2">
-              <Link href="/dashboard">
-                <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
-                  Home
-                </Button>
-              </Link>
-              <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
-                Misinfo Checker
-              </Button>
-              <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
-                Chat with us
-              </Button>
-              <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-[#d4f826] hover:bg-green-50 dark:hover:bg-white/5">
-                About us
-              </Button>
-            </nav>
-          </div>
-          <div className="flex items-center gap-2">
-            <LanguageSelector />
-            <ThemeToggle />
-            <Button variant="ghost" className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/30 font-medium transition-colors" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Logout
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Main Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
