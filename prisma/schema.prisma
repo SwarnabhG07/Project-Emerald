@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Farmer {
+  id          String   @id @default(cuid())
+  phone       String   @unique
+  pinHash     String
+  name        String?
+  kisanId     String?  @unique
+  householdId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  profile      Profile?
+  documents    Document[]
+  applications Application[]
+}
+
+model Profile {
+  farmerId      String  @id
+  farmer        Farmer  @relation(fields: [farmerId], references: [id], onDelete: Cascade)
+  fullName      String?
+  age           Int?
+  gender        String?
+  state         String?
+  district      String?
+  village       String?
+  category      String?
+  subCategory   String?
+  landSizeAcres Float?
+  landOwnership String?
+  khasraNumber  String?
+  annualIncome  Float?
+  bankAccount   Boolean @default(false)
+  aadhaarLinked Boolean @default(false)
+  extra         String?
+  isComplete    Boolean @default(false)
+  updatedAt     DateTime @updatedAt
+}
+
+model Document {
+  id         String   @id @default(cuid())
+  farmerId   String
+  farmer     Farmer   @relation(fields: [farmerId], references: [id], onDelete: Cascade)
+  type       String
+  filename   String
+  mimeType   String
+  sizeBytes  Int
+  storageKey String
+  dekWrapped String
+  iv         String
+  verified   Boolean  @default(false)
+  uploadedAt DateTime @default(now())
+}
+
+model Scheme {
+  id             String    @id @default(cuid())
+  externalId     String?
+  name           String
+  ministry       String
+  state          String?
+  source         String    @default("manual")
+  description    String?
+  category       String?   // canonical category: Income Support, Insurance, Credit, ...
+  searchText     String?   // denormalised text used for BM25 + embeddings (the "text" field)
+  sourceUrl      String?
+  sourceLastUpdated DateTime?
+  currentVersion Int       @default(1)
+  isActive       Boolean   @default(true)
+  lastConfirmed  DateTime  @default(now())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  versions     SchemeVersion[]
+  applications Application[]
+  embeddings   SchemeEmbedding[]
+}
+
+model SchemeVersion {
+  id               String    @id @default(cuid())
+  schemeId         String
+  scheme           Scheme    @relation(fields: [schemeId], references: [id], onDelete: Cascade)
+  version          Int
+  benefit          String
+  benefitAmount    Float?
+  eligibilityText  String
+  eligibilityRules String
+  documentsNeeded  String
+  deadline         DateTime?
+  link             String?
+  changedBy        String?
+  changedAt        DateTime  @default(now())
+
+  @@unique([schemeId, version])
+}
+
+// Vector store for hybrid RAG (SQLite-friendly: vector serialised as JSON)
+model SchemeEmbedding {
+  id        String   @id @default(cuid())
+  schemeId  String
+  scheme    Scheme   @relation(fields: [schemeId], references: [id], onDelete: Cascade)
+  version   Int
+  model     String
+  vector    String   // JSON array of floats
+  textHash  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([schemeId, version])
+}
+
+model Application {
+  id              String   @id @default(cuid())
+  farmerId        String
+  farmer          Farmer   @relation(fields: [farmerId], references: [id], onDelete: Cascade)
+  schemeId        String
+  scheme          Scheme   @relation(fields: [schemeId], references: [id], onDelete: Cascade)
+  schemeVersionId String
+  status          String   @default("draft")
+  appliedAt       DateTime @default(now())
+  notes           String?
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  farmerId  String?
+  action    String
+  details   String?
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+// Audit/observability for the ingestion pipeline
+model IngestionRun {
+  id         String    @id @default(cuid())
+  sources    String
+  status     String    @default("running")
+  fetched    Int       @default(0)
+  created    Int       @default(0)
+  updated    Int       @default(0)
+  skipped    Int       @default(0)
+  failed     Int       @default(0)
+  error      String?
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+}
