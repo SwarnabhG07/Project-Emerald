@@ -1,0 +1,33 @@
+services:
+  emerald:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: project-emerald
+    restart: unless-stopped
+    ports:
+      - "1000:1000"
+    volumes:
+      - emerald_db:/app/data
+      - emerald_uploads:/app/.uploads
+    environment:
+      - NODE_ENV=production
+      # Plain HTTP on localhost → don't require Secure cookies.
+      # Set to "true" only when serving over HTTPS.
+      - COOKIE_SECURE=false
+      # Uncomment to pin values instead of auto-generating:
+      # - DOCUMENT_MASTER_KEY=<base64, 32 bytes>
+      # - JWT_SECRET=<long random string>
+      # - PIN_PEPPER=<random string>
+      # Needed to use /api/admin/* in production (10-digit numbers):
+      # - ADMIN_PHONES=9876543210
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:1000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  emerald_db:
+  emerald_uploads:

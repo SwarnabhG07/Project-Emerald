@@ -11,8 +11,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "AgriPortal Dashboard",
-  description: "Modern farm management platform",
+  title: "Project Emerald — AgriScheme Matcher",
+  description: "Match farmers to government agricultural schemes intelligently",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
