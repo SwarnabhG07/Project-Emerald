@@ -1,0 +1,57 @@
+[
+  {
+    "external_id": "pm-kisan-001",
+    "name": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "state": "All States",
+    "category": "General/SC/ST/OBC",
+    "benefits": "Income support of Rs. 6,000 per year in three equal installments.",
+    "eligibility_text": "All landholding farmers' families, which have cultivable land holding in their names are eligible to get benefit under the scheme.",
+    "documents_needed": "Aadhaar Card, Bank Account Passbook, Land Records",
+    "link": "https://pmkisan.gov.in/"
+  },
+  {
+    "external_id": "pmfby-001",
+    "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "state": "All States",
+    "category": "General/SC/ST/OBC",
+    "benefits": "Insurance coverage and financial support to farmers in the event of failure of any of the notified crops.",
+    "eligibility_text": "All farmers including tenant farmers and sharecroppers growing notified crops in notified areas are eligible.",
+    "documents_needed": "Aadhaar Card, Land Record or Tenancy Agreement, Bank Details",
+    "link": "https://pmfby.gov.in/"
+  },
+  {
+    "external_id": "kcc-001",
+    "name": "Kisan Credit Card (KCC)",
+    "ministry": "Ministry of Agriculture and Farmers Welfare / RBI",
+    "state": "All States",
+    "category": "General/SC/ST/OBC",
+    "benefits": "Adequate and timely credit support from the banking system under a single window for their cultivation and other needs.",
+    "eligibility_text": "All farmers, owner cultivators, tenant farmers, oral lessees and sharecroppers, SHGs or JLGs of farmers.",
+    "documents_needed": "ID Proof, Address Proof, Land Documents, Passport size photographs",
+    "link": "https://www.pmjdy.gov.in/"
+  },
+  {
+    "external_id": "rythu-bandhu-001",
+    "name": "Rythu Bandhu (Investment Support for Agriculture)",
+    "ministry": "Department of Agriculture, Telangana",
+    "state": "Telangana",
+    "category": "General/SC/ST/BC",
+    "benefits": "Investment support of Rs. 10,000 per acre per year (Rs. 5000 for Kharif and Rs. 5000 for Rabi).",
+    "eligibility_text": "All farmers of the State having cultivable land to the extent of land possessed / owned by them are eligible. Tenant farmers are NOT eligible (as per current rules).",
+    "documents_needed": "Pattadar Passbook, Aadhaar Card, Bank Account Details",
+    "link": "https://agriculture.telangana.gov.in/"
+  },
+  {
+    "external_id": "kalia-001",
+    "name": "KALIA (Krushak Assistance for Livelihood and Income augmentation)",
+    "ministry": "Department of Agriculture & Farmers Empowerment, Odisha",
+    "state": "Odisha",
+    "category": "General/SC/ST/OBC",
+    "benefits": "Financial support of Rs. 25,000 over 5 seasons for small/marginal farmers. Rs. 12,500 for landless agricultural households.",
+    "eligibility_text": "Small and marginal farmers owning cultivable land, and vulnerable agricultural households (landless).",
+    "documents_needed": "Aadhaar Card, Ration Card, Land records (RoR)",
+    "link": "https://kalia.odisha.gov.in/"
+  }
+]
