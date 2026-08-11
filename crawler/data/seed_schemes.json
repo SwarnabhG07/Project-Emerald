@@ -11,6 +11,17 @@
     "link": "https://pmkisan.gov.in/"
   },
   {
+    "external_id": "pmfby-069",
+    "name": "aadity yojna",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "state": "All States",
+    "category": "General/SC/ST/OBC",
+    "benefits": "Insurance coverage and financial support to farmers in the event of failure of any of the notified crops.",
+    "eligibility_text": "All farmers including tenant farmers and sharecroppers growing notified crops in notified areas are eligible.",
+    "documents_needed": "Aadhaar Card, Land Record or Tenancy Agreement, Bank Details",
+    "link": "https://pmfby.gov.in/"
+  },
+  {
     "external_id": "pmfby-001",
     "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
     "ministry": "Ministry of Agriculture and Farmers Welfare",

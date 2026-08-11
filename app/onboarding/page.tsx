@@ -87,12 +87,11 @@ export default function OnboardingPage() {
                 <Label htmlFor="areaOfLand" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Area of Land (in Acres)</Label>
                 <Input
                   id="areaOfLand"
-                  name="areaOfLand"
                   type="number"
                   step="0.1"
                   placeholder="E.g. 5.5"
                   value={formData.areaOfLand}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData(prev => ({ ...prev, areaOfLand: e.target.value }))}
                   required
                   className="border-slate-200 dark:border-white/10 focus-visible:ring-orange-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-orange-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
                 />
@@ -102,11 +101,10 @@ export default function OnboardingPage() {
                 <Label htmlFor="income" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Annual Income (₹)</Label>
                 <Input
                   id="income"
-                  name="income"
                   type="number"
                   placeholder="E.g. 150000"
                   value={formData.income}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData(prev => ({ ...prev, income: e.target.value }))}
                   required
                   className="border-slate-200 dark:border-white/10 focus-visible:ring-orange-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-orange-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
                 />
@@ -116,10 +114,9 @@ export default function OnboardingPage() {
                 <Label htmlFor="address" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Address / Village</Label>
                 <Input
                   id="address"
-                  name="address"
                   placeholder="Enter your complete address or village name"
                   value={formData.address}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
                   required
                   className="border-slate-200 dark:border-white/10 focus-visible:ring-orange-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-orange-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
                 />
@@ -129,9 +126,8 @@ export default function OnboardingPage() {
                 <Label htmlFor="state" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">State</Label>
                 <select
                   id="state"
-                  name="state"
                   value={formData.state}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData(prev => ({ ...prev, state: e.target.value }))}
                   required
                   className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-[#d4f826] focus:border-orange-500 dark:focus:border-[#d4f826] dark:[&>option]:bg-[#1a1a1a] dark:[&>option]:text-white transition-colors"
                 >
@@ -154,9 +150,8 @@ export default function OnboardingPage() {
                 <Label htmlFor="caste" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Category / Caste</Label>
                 <select
                   id="caste"
-                  name="caste"
                   value={formData.caste}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData(prev => ({ ...prev, caste: e.target.value }))}
                   required
                   className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-[#d4f826] focus:border-orange-500 dark:focus:border-[#d4f826] dark:[&>option]:bg-[#1a1a1a] dark:[&>option]:text-white transition-colors"
                 >
@@ -173,9 +168,8 @@ export default function OnboardingPage() {
                 <Label htmlFor="landOwnership" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Land Ownership Type</Label>
                 <select
                   id="landOwnership"
-                  name="landOwnership"
                   value={formData.landOwnership}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData(prev => ({ ...prev, landOwnership: e.target.value }))}
                   required
                   className="flex h-12 w-full items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-[#d4f826] focus:border-orange-500 dark:focus:border-[#d4f826] dark:[&>option]:bg-[#1a1a1a] dark:[&>option]:text-white transition-colors"
                 >

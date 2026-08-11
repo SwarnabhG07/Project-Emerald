@@ -20,7 +20,8 @@ export function getSources(filter?: string[]): SchemeSourceAdapter[] {
     );
   }
 
-  if (filter && filter.length > 0) {
+  // "all" means run every source; otherwise filter by source id
+  if (filter && filter.length > 0 && !filter.includes("all")) {
     return sources.filter((s) => filter.includes(s.id));
   }
   return sources;

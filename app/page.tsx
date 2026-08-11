@@ -4,24 +4,22 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [needsProfile, setNeedsProfile] = useState(false);
+  const router = useRouter();
 
-  function handleLoginSuccess(needsProfileSetup: boolean) {
-    setNeedsProfile(needsProfileSetup);
-    setIsLoggedIn(true);
-  }
+  useEffect(() => {
+    // Check if the user is already logged in via localStorage
+    const isLoggedIn = localStorage.getItem("farmer_name");
+    
+    if (isLoggedIn) {
+      router.push("/dashboard");
+    } else {
+      router.push("/login");
+    }
+  }, [router]);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {isLoggedIn ? (
-        <FarmerDashboard
-          initialNeedsProfile={needsProfile}
-          onLogout={() => setIsLoggedIn(false)}
-        />
-      ) : (
-        <LoginForm onLoginSuccess={handleLoginSuccess} />
-      )}
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="w-8 h-8 border-4 border-[#d4f826] border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 }

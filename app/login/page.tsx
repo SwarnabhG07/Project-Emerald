@@ -16,6 +16,11 @@ export default function LoginPage() {
   const [mobile, setMobile] = useState("");
   const [isMounted, setIsMounted] = useState(false);
 
+  const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     setIsMounted(true);
     // Check if user is already logged in
@@ -31,18 +36,80 @@ export default function LoginPage() {
     }
   }, [router]);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !mobile.trim()) return;
+    setError("");
+    setIsLoading(true);
+    
+    try {
+      const res = await fetch("/api/auth/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: mobile }),
+      });
+      const data = await res.json();
+      
+      if (!res.ok) {
+        setError(data.error || "Failed to send OTP");
+      } else {
+        setStep(2);
+      }
+    } catch (err) {
+      setError("Server error");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    localStorage.setItem("farmer_name", name);
-    localStorage.setItem("farmer_mobile", mobile);
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const otpValue = otp.join("");
+    if (otpValue.length !== 6) return;
+    
+    setError("");
+    setIsLoading(true);
 
-    const onboarded = localStorage.getItem("farmer_onboarded");
-    if (onboarded === "true") {
-      router.push("/dashboard");
-    } else {
-      router.push("/onboarding");
+    try {
+      const res = await fetch("/api/auth/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: mobile, otp: otpValue }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Invalid OTP");
+        setIsLoading(false);
+        return;
+      }
+
+      // Success - mock session for demo
+      localStorage.setItem("farmer_name", name);
+      localStorage.setItem("farmer_mobile", mobile);
+
+      const onboarded = localStorage.getItem("farmer_onboarded");
+      if (onboarded === "true") {
+        router.push("/dashboard");
+      } else {
+        router.push("/onboarding");
+      }
+    } catch (err) {
+      setError("Server error");
+      setIsLoading(false);
+    }
+  };
+
+  const handleOtpChange = (index: number, value: string) => {
+    if (value.length > 1) return;
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
+    // Auto-focus next input
+    if (value && index < 5) {
+      const nextInput = document.getElementById(`otp-${index + 1}`);
+      if (nextInput) nextInput.focus();
     }
   };
 
@@ -66,47 +133,107 @@ export default function LoginPage() {
               <Leaf className="h-8 w-8 text-green-600 dark:text-[#d4f826]" />
             </div>
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors">Welcome to Agri</CardTitle>
+          <CardTitle className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors">
+            {step === 1 ? "Welcome to Agri" : "Verify OTP"}
+          </CardTitle>
           <CardDescription className="text-slate-500 dark:text-slate-400 font-light transition-colors">
-            Enter your details to sign in or create an account
+            {step === 1 
+              ? "Enter your details to sign in or create an account" 
+              : `Enter the 6-digit code sent to +91 ${mobile}`}
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleLogin}>
-          <CardContent className="space-y-5 px-8">
-            <div className="space-y-3">
-              <Label htmlFor="name" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Full Name</Label>
-              <Input
-                id="name"
-                placeholder="E.g. Ramesh Kumar"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="border-slate-200 dark:border-white/10 focus-visible:ring-green-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-green-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
-              />
-            </div>
-            <div className="space-y-3">
-              <Label htmlFor="mobile" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Mobile Number</Label>
-              <Input
-                id="mobile"
-                type="tel"
-                placeholder="E.g. 9876543210"
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-                required
-                className="border-slate-200 dark:border-white/10 focus-visible:ring-green-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-green-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
-              />
-            </div>
-          </CardContent>
-          <CardFooter className="px-8 pb-10 pt-4 border-t-0 bg-transparent">
-            <Button 
-              type="submit" 
-              className="w-full bg-green-600 dark:bg-[#d4f826] text-white dark:text-black hover:bg-green-700 dark:hover:bg-[#bce015] font-semibold tracking-wide h-12 rounded-xl transition-all shadow-md dark:shadow-none"
-            >
-              Continue
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </CardFooter>
-        </form>
+        
+        {step === 1 ? (
+          <form onSubmit={handleSendOtp}>
+            <CardContent className="space-y-5 px-8">
+              {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
+              <div className="space-y-3">
+                <Label htmlFor="name" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Full Name</Label>
+                <Input
+                  id="name"
+                  placeholder="E.g. Ramesh Kumar"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="border-slate-200 dark:border-white/10 focus-visible:ring-green-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-green-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
+                />
+              </div>
+              <div className="space-y-3">
+                <Label htmlFor="mobile" className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors">Mobile Number</Label>
+                <Input
+                  id="mobile"
+                  type="tel"
+                  placeholder="E.g. 9876543210"
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
+                  required
+                  className="border-slate-200 dark:border-white/10 focus-visible:ring-green-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-green-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-12 rounded-xl transition-colors"
+                />
+              </div>
+            </CardContent>
+            <CardFooter className="px-8 pb-10 pt-4 border-t-0 bg-transparent flex-col gap-3">
+              <Button 
+                type="submit" 
+                disabled={isLoading}
+                className="w-full bg-green-600 dark:bg-[#d4f826] text-white dark:text-black hover:bg-green-700 dark:hover:bg-[#bce015] font-semibold tracking-wide h-12 rounded-xl transition-all shadow-md dark:shadow-none"
+              >
+                {isLoading ? "Sending..." : "Send OTP"}
+                {!isLoading && <ArrowRight className="ml-2 h-5 w-5" />}
+              </Button>
+              
+              <Button 
+                type="button" 
+                variant="outline"
+                onClick={() => {
+                  localStorage.setItem("is_admin", "true");
+                  router.push("/admin/dashboard");
+                }}
+                className="w-full h-12 rounded-xl border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
+              >
+                Login as Administrator
+              </Button>
+            </CardFooter>
+          </form>
+        ) : (
+          <form onSubmit={handleVerifyOtp}>
+            <CardContent className="space-y-6 px-8">
+              {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
+              <div className="space-y-3">
+                <Label className="text-slate-600 dark:text-slate-300 text-xs uppercase tracking-widest font-semibold transition-colors flex justify-between">
+                  <span>Enter OTP</span>
+                  <span className="text-orange-600 dark:text-[#d4f826] cursor-pointer hover:underline normal-case tracking-normal" onClick={() => setStep(1)}>
+                    Change Number
+                  </span>
+                </Label>
+                <div className="flex gap-2 justify-center">
+                  {otp.map((digit, i) => (
+                    <Input
+                      key={i}
+                      id={`otp-${i}`}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={digit}
+                      onChange={(e) => handleOtpChange(i, e.target.value)}
+                      className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-slate-200 dark:border-white/10 focus-visible:ring-green-500 dark:focus-visible:ring-[#d4f826] focus-visible:border-green-500 dark:focus-visible:border-[#d4f826] bg-white dark:bg-white/5 text-slate-900 dark:text-white rounded-xl transition-colors px-0"
+                      required
+                    />
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="px-8 pb-10 pt-4 border-t-0 bg-transparent flex-col gap-3">
+              <Button 
+                type="submit" 
+                disabled={isLoading}
+                className="w-full bg-green-600 dark:bg-[#d4f826] text-white dark:text-black hover:bg-green-700 dark:hover:bg-[#bce015] font-semibold tracking-wide h-12 rounded-xl transition-all shadow-md dark:shadow-none"
+              >
+                {isLoading ? "Verifying..." : "Verify & Login"}
+                {!isLoading && <ArrowRight className="ml-2 h-5 w-5" />}
+              </Button>
+            </CardFooter>
+          </form>
+        )}
       </Card>
     </div>
   );

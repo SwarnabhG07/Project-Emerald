@@ -119,6 +119,7 @@ async function upsertCleanedScheme(
         sourceUrl: c.sourceLink,
         sourceLastUpdated: c.lastUpdated,
         searchText: c.text,
+        isActive: false, // Set to false to require admin approval
         versions: { create: versionData(c, 1, "pipeline") },
       },
     });
@@ -146,6 +147,7 @@ async function upsertCleanedScheme(
       sourceLastUpdated: c.lastUpdated,
       searchText: c.text,
       lastConfirmed: new Date(),
+      // Don't change isActive on updates — already-approved schemes stay approved
       ...(changed
         ? { currentVersion: nextVersion, externalId: c.externalId ?? existing.externalId }
         : {}),

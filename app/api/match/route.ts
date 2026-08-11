@@ -8,15 +8,15 @@ export async function GET() {
   try {
     const user = await requireUser();
 
-    if (!user.profile?.isComplete) {
-      return NextResponse.json({
-        eligible: [],
-        nearMiss: [],
-        evaluatedAt: new Date().toISOString(),
-        totalSchemesEvaluated: 0,
-        warning: "Complete your profile to see eligible schemes",
-      });
-    }
+    // if (!user.profile?.isComplete) {
+    //   return NextResponse.json({
+    //     eligible: [],
+    //     nearMiss: [],
+    //     evaluatedAt: new Date().toISOString(),
+    //     totalSchemesEvaluated: 0,
+    //     warning: "Complete your profile to see eligible schemes",
+    //   });
+    // }
 
     let result;
     try {
