@@ -1,26 +1,8 @@
 # Farmer–Government Scheme Matching Tool
-## Full Plan v2 — with Data Pipeline, Explainability, Escalation, and Offline Support
+## Full Plan : with Data Pipeline, Explainability, Escalation, and Offline Support
 
 ---
 
-## 0. What's New in This Version
-
-The original revised plan fixed the core mistakes (hashing vs encryption, similarity-search vs rule-based
-eligibility, caste vs category, tenant vs owner). This version adds six features that turn the tool from a
-single-service app into a proper multi-layer system:
-
-1. Multi-source scheme aggregation pipeline
-2. Scheme versioning & change tracking
-3. Admin/verification dashboard
-4. Partial-eligibility explainability graph
-5. Escalation to human helpline
-6. Offline-first / low-connectivity sync
-
-Everything from the original plan (login via OTP+PIN, farmer profile fields, document photo upload,
-encrypted storage, two-step matching, deadline SMS, regional language, duplicate-claim checks) stays as-is
-and is not repeated in full here except where it connects to the new features.
-
----
 
 ## 1. Scheme Data Layer
 
@@ -48,11 +30,10 @@ schemes that aren't listed there, or lagging when myScheme itself is slow to upd
 sources that permit structured access (open data portals, published APIs, or the admin dashboard for manual
 entry when nothing else exists).
 
----
-
+----
 ### 1.2 Scheme Versioning & Change Tracking
 
-**Problem it solves:** Scheme rules change — income limits get revised, deadlines extend, new documents get
+**Problem it solves:** Scheme rules change: income limits get revised, deadlines extend, new documents get
 required. Farmers shown "why you qualify" need that explanation to stay accurate historically, and the team
 needs to know exactly what changed and when.
 
@@ -62,11 +43,8 @@ needs to know exactly what changed and when.
 - Each version stores: what changed, when, and which source triggered the change (aggregation pipeline vs
   manual admin edit).
 - The matching engine always uses the **current active version** for a live query, but every eligibility
-  decision shown to a farmer stores a reference to the exact version used — so if a farmer disputes a
+  decision shown to a farmer stores a reference to the exact version used, so if a farmer disputes a
   rejection weeks later, the team can pull up precisely what rule was applied at that time.
-- If a scheme is revised in a way that changes a farmer's existing eligibility (positively or negatively),
-  they get a notification: "Rules for [Scheme] changed — you may now qualify" or "Rules changed — please
-  recheck your eligibility."
 
 ---
 
@@ -105,7 +83,7 @@ multiple schemes at once, or in what order changes are most impactful.
   *"Uploading your OBC certificate unlocks 4 additional schemes. Registering your land document unlocks 2
   more."*
 - Conditions are ranked by **impact** (how many schemes they unlock) so the farmer sees the highest-value,
-  easiest action first — not just an alphabetical or random list.
+  easiest action first, and not just an alphabetical or random list.
 - The graph is rebuilt whenever the farmer's profile changes or scheme rules are updated (via the versioning
   system above), so it never goes stale.
 - Every explanation stays grounded in Step 1's hard rules (Section 4 of the original plan) — the graph only
@@ -124,10 +102,10 @@ genuinely doesn't know the answer.
 
 **How it works:**
 - The chatbot/query system classifies each query by type: navigation ("how do I upload a document"),
-  factual lookup ("what schemes am I eligible for" — answered directly from the rule engine, not generated
+  factual lookup ("what schemes am I eligible for", answered directly from the rule engine, not generated
   text), or dispute/uncertain ("I applied and got rejected, but the app said I qualify").
 - Dispute/uncertain queries, and anything the system's confidence falls below a set threshold on, are
-  **escalated automatically** — not left for the farmer to hunt for a "contact us" button.
+  **escalated automatically**, and not left for the farmer to hunt for a "contact us" button.
 - Escalation options, chosen based on what's available in the farmer's area:
   - Callback request routed to a human helpline agent
   - Handoff to a local agri-extension officer or Common Service Centre (CSC) agent
@@ -219,15 +197,3 @@ schemes shouldn't lose their work or be blocked entirely when signal drops.
 - Document authenticity checks (OCR + tamper flags for manual review)
 - Cross-scheme duplicate/fraud pattern detection
 - Policymaker-facing analytics dashboard (aggregate, anonymized "near-miss eligibility" data)
-
----
-
-## 6. Open Questions for the Team Before Building
-
-- Which state portals are priority for Phase 2's multi-source pipeline — start with the top 3–5 states by
-  farmer registration volume, or the states with the most schemes missing from myScheme?
-- Who owns the admin dashboard day-to-day — an internal team, or partner NGOs/CSC network staff trained on
-  it?
-- What's the escalation SLA (how fast must a helpline callback happen) and is there existing helpline
-  infrastructure to route into, or does one need to be built/contracted?
-- What's the acceptable data cost per sync cycle for offline mode, given farmers' typical data plans?
